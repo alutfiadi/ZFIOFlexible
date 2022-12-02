@@ -15,14 +15,14 @@
 				<headerTitle>
 					<ObjectPageDynamicHeaderTitle>
 						<expandedHeading>
-							<m:Title text="{products>Name}" wrapping="true" class="sapUiSmallMarginEnd"/>
+							<m:Title text="{carriers>Carrname}" wrapping="true" class="sapUiSmallMarginEnd"/>
 						</expandedHeading>
 
 						<snappedHeading>
 							<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 								<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-									<f:Avatar src="../../../../../../../{products>ProductPicUrl}" displaySize="S" displayShape="Square"/>
-									<m:Title text="{products>Name}" wrapping="true" class="sapUiTinyMarginEnd"/>
+									<f:Avatar src="./images/plane.png" displaySize="S" displayShape="Square"/>
+									<m:Title text="{carriers>Carrname}" wrapping="true" class="sapUiTinyMarginEnd"/>
 								</m:FlexBox>
 							</m:FlexBox>
 						</snappedHeading>
@@ -58,22 +58,22 @@
 
 				<headerContent>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-						<f:Avatar src="../../../../../../../{products>ProductPicUrl}"
+						<f:Avatar src="./images/plane.png"
 								  displaySize="L"
 								  displayShape="Square"
 								  class="sapUiTinyMarginEnd">
 						</f:Avatar>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-							<m:Label text="Main Category"/>
-							<m:Text text="{products>MainCategory}"/>
+							<m:Label text="Carrier ID"/>
+							<m:Text text="{carriers>Carrid}"/>
 						</m:VBox>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-							<m:Label text="Subcategory"/>
-							<m:Text text="{products>Category}"/>
+							<m:Label text="Carrier Name"/>
+							<m:Text text="{carriers>Carrname}"/>
 						</m:VBox>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-							<m:Label text="Price"/>
-							<m:ObjectNumber number="{products>CurrencyCode} {products>Price}" emphasized="false"/>
+							<m:Label text="Url"/>
+							<m:Link text="{carriers>Url}" href="{carriers>Url}"/>
 						</m:VBox>
 					</m:FlexBox>
 				</headerContent>
@@ -94,12 +94,14 @@
 								columnsL="1"
 								columnsM="1">
 								<form:content>
-									<m:Label text="Product ID"/>
-									<m:Text text="{products>ProductId}"/>
-									<m:Label text="Description"/>
-									<m:Text text="{products>Description}"/>
-									<m:Label text="Supplier"/>
-									<m:Text text="{products>SupplierName}"/>
+									<m:Label text="Carrier ID"/>
+									<m:Text text="{carriers>Carrid}"/>
+									<m:Label text="Carrier Name"/>
+									<m:Text text="{carriers>Carrname}"/>
+									<m:Label text="Currency "/>
+									<m:Text text="{carriers>Currcode}"/>
+									<m:Label text="Url"/>
+									<m:Text text="{carriers>Url}"/>
 								</form:content>
 							</form:SimpleForm>
 						</blocks>
@@ -107,22 +109,52 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="Suppliers">
+			<ObjectPageSection title="Flights History">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
 							<m:Table
-								id="suppliersTable"
+								id="FlightsTable"
 								mode="SingleSelectMaster"
 								itemPress="handleItemPress"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								items="{
+										path: 'carriers>FlightSet',
+										parameters : {expand:'FlightSet'}
+									}">
 								<m:columns>
-									<m:Column />
+									<m:Column>
+										<m:Text text="Date"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Flight Number"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Plane Type"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Price"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Seats Max"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Seats Occupied"/>
+									</m:Column>
+									<m:Column>
+										<m:Text text="Total"/>
+									</m:Column>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation">
 										<m:cells>
-											<m:ObjectIdentifier text="{products>text}" />
+											<m:Text text="{carriers>Fldate}" />
+											<m:Text text="{carriers>Carrid} - {carriers>Connid}" />
+											<m:Text text="{carriers>Planetype}" />
+											<m:Text text="{carriers>Price} {carriers>Currency}" />
+											<m:Text text="{carriers>Seatsmax}" />
+											<m:Text text="{carriers>Seatsocc}" />
+											<m:Text text="{carriers>Paymentsum}" />
+											
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>

@@ -12,9 +12,9 @@ sap.ui.define([
 			this.oRouter = this.getOwnerComponent().getRouter();
 			this.oModel = this.getOwnerComponent().getModel();
 
-			this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
-			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
-			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
+			this.oRouter.getRoute("master").attachPatternMatched(this._onCarrierMatched, this);
+			this.oRouter.getRoute("detail").attachPatternMatched(this._onCarrierMatched, this);
+			this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onCarrierMatched, this);
 
 			[oExitButton, oEnterButton].forEach(function (oButton) {
 				oButton.addEventDelegate({
@@ -49,12 +49,18 @@ sap.ui.define([
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
 			this.oRouter.navTo("master", {layout: sNextLayout});
 		},
-		_onProductMatched: function (oEvent) {
-			this._product = oEvent.getParameter("arguments").product || this._product || "0";
+		_onCarrierMatched: function (oEvent) {
+			this.sCarrier = oEvent.getParameter("arguments").carrier || this.carrier || "AB",
 			this.getView().bindElement({
-				path: "/ProductCollection/" + this._product,
-				model: "products"
+				path: "/CarriersSet('" + this.sCarrier +"')",
+				model: "carriers"
 			});
+			//bind to table History 
+			// this.getView().byId("FlightsTable").bindElement({
+			// 	path: "/CarriersSet('" + this.sCarrier +"')/FlightSet",
+			// 	model: "carriers"
+			// });
+			// console.log(this.getOwnerComponent().getModel('carriers'))
 		}
 	});
 });

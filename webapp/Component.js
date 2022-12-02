@@ -4,7 +4,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/f/library",
 	"sap/f/FlexibleColumnLayoutSemanticHelper"
-], function (UriParameters, UIComponent, JSONModel, library, FlexibleColumnLayoutSemanticHelper) {
+], function(UriParameters, UIComponent, JSONModel, library, FlexibleColumnLayoutSemanticHelper) {
 	"use strict";
 
 	var LayoutType = library.LayoutType;
@@ -14,17 +14,18 @@ sap.ui.define([
 			manifest: "json"
 		},
 
-		init: function () {
+		init: function() {
 			UIComponent.prototype.init.apply(this, arguments);
 
 			var oModel = new JSONModel();
 			this.setModel(oModel);
 
 			// set products demo model on this sample
-			var oProductsModel = new JSONModel("./localServices/products.json");
-			oProductsModel.setSizeLimit(1000);
-			this.setModel(oProductsModel, "products");
-
+			// var oProductsModel = new JSONModel("./localServices/products.json");
+			// oProductsModel.setSizeLimit(1000);
+			// this.setModel(oProductsModel, "products");
+			var oModelFlights = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZOD_FLIGHTS_AL_SRV/", true);
+			this.setModel(oModelFlights, "carriers");
 
 			this.getRouter().initialize();
 		},
@@ -33,14 +34,14 @@ sap.ui.define([
 		 * Returns an instance of the semantic helper
 		 * @returns {sap.f.FlexibleColumnLayoutSemanticHelper} An instance of the semantic helper
 		 */
-		getHelper: function () {
+		getHelper: function() {
 			var oFCL = this.getRootControl().byId("fcl"),
-			oParams = UriParameters.fromQuery(location.search),
+				oParams = UriParameters.fromQuery(location.search),
 				oSettings = {
 					defaultTwoColumnLayoutType: LayoutType.TwoColumnsMidExpanded,
 					defaultThreeColumnLayoutType: LayoutType.ThreeColumnsMidExpanded,
 					mode: oParams.get("mode"),
-					initialColumnsCount: 2,
+					initialColumnsCount: 1,
 					maxColumnsCount: oParams.get("max")
 				};
 

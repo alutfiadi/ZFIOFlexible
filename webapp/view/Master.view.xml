@@ -8,7 +8,7 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="Products ({products>/ProductCollectionStats/Counts/Total})"/>
+					<Title text="Carriers List"/>
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>
@@ -16,15 +16,16 @@
 		<!-- DynamicPage Content -->
 		<f:content>
 			<Table
-				id="productsTable"
+				id="carriersTable"
 				mode="SingleSelectMaster"
 				itemPress="onListItemPress"
 				inset="false"
 				items="{
-					path: 'products>/ProductCollection',
+					path: 'carriers>/CarriersSet',
 					sorter: {
-						path: 'Name'
-					}
+						path: 'Carrname'
+					},
+					parameters: {expand:'FlightSet'}
 				}"
 				class="sapFDynamicPageAlignContent"
 				width="auto">
@@ -38,23 +39,17 @@
 				</headerToolbar>
 				<columns>
 					<Column width="12em">
-						<Text text="Product" />
+						<Text text="Carriers" />
 					</Column>
 					<Column	hAlign="End">
-						<Text text="Price" />
+						<Text text="Total Flight" />
 					</Column>
 				</columns>
 				<items>
 					<ColumnListItem type="Navigation">
 						<cells>
-							<ObjectIdentifier title="{products>Name}" text="{products>ProductId}" />
-							<ObjectNumber
-									number="{
-										parts:[{path:'products>Price'},{path:'products>CurrencyCode'}],
-										type: 'sap.ui.model.type.Currency',
-										formatOptions: {showMeasure: false}
-									}"
-									unit="{products>CurrencyCode}" />
+							<ObjectIdentifier title="{carriers>Carrname}" text="{carriers>Carrid}" />
+							<Text text="{path: 'carriers>Carrid', formatter: '.getNumberOfItems'}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
