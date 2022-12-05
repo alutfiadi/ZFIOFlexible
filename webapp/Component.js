@@ -9,7 +9,7 @@ sap.ui.define([
 
 	var LayoutType = library.LayoutType;
 
-	var Component = UIComponent.extend("zalflexible.Component", {
+	var Component = UIComponent.extend("zal.zflexibletemplate.Component", {
 		metadata: {
 			manifest: "json"
 		},
@@ -24,7 +24,7 @@ sap.ui.define([
 			// var oProductsModel = new JSONModel("./localServices/products.json");
 			// oProductsModel.setSizeLimit(1000);
 			// this.setModel(oProductsModel, "products");
-			var oModelFlights = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZOD_FLIGHTS_AL_SRV/", true);
+			var oModelFlights = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZGW_FLIGHTS_SRV/", true);
 			this.setModel(oModelFlights, "carriers");
 
 			this.getRouter().initialize();

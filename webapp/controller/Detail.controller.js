@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (JSONModel, Controller) {
 	"use strict";
 
-	return Controller.extend("zalflexible.controller.Detail", {
+	return Controller.extend("zal.zflexibletemplate.controller.Detail", {
 		onInit: function () {
 			var oExitButton = this.getView().byId("exitFullScreenBtn"),
 				oEnterButton = this.getView().byId("enterFullScreenBtn");

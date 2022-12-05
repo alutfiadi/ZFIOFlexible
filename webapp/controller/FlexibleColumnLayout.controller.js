@@ -1,12 +1,14 @@
+// This Apps is developed by:  Ahmad Lutfiadi
+// PT NTT Data Business Solution
 sap.ui.define([
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/core/mvc/Controller"
+	"zal/zflexibletemplate/controller/BaseController"
 ], function (JSONModel, Controller) {
 	"use strict";
 
-	return Controller.extend("zalflexible.controller.FlexibleColumnLayout", {
+	return Controller.extend("zal.zflexibletemplate.controller.FlexibleColumnLayout", {
 		onInit: function () {
-			this.oRouter = this.getOwnerComponent().getRouter();
+			this.oRouter = this.getRouter();
 			this.oRouter.attachRouteMatched(this.onRouteMatched, this);
 			this.oRouter.attachBeforeRouteMatched(this.onBeforeRouteMatched, this);
 			// Navigating to a random product in order to display two columns initially
@@ -15,13 +17,13 @@ sap.ui.define([
 
 		onBeforeRouteMatched: function(oEvent) {
 
-			var oModel = this.getOwnerComponent().getModel();
+			var oModel = this.getModel();
 
 			var sLayout = oEvent.getParameters().arguments.layout;
 
 			// If there is no layout parameter, query for the default level 0 layout (normally OneColumn)
 			if (!sLayout) {
-				var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(0);
+				var oNextUIState = this.getHelper().getNextUIState(0);
 				sLayout = oNextUIState.layout;
 			}
 
@@ -57,8 +59,8 @@ sap.ui.define([
 
 		// Update the close/fullscreen buttons visibility
 		_updateUIElements: function () {
-			var oModel = this.getOwnerComponent().getModel();
-			var oUIState = this.getOwnerComponent().getHelper().getCurrentUIState();
+			var oModel = this.getModel();
+			var oUIState = this.getHelper().getCurrentUIState();
 			oModel.setData(oUIState);
 		},
 
@@ -68,3 +70,5 @@ sap.ui.define([
 		}
 	});
 });
+// This Apps is developed by:  Ahmad Lutfiadi
+// PT NTT Data Business Solution

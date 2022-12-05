@@ -1,6 +1,6 @@
 sap.ui.define([
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/core/mvc/Controller",
+	"zal/zflexibletemplate/controller/BaseController",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	'sap/ui/model/Sorter',
@@ -8,9 +8,9 @@ sap.ui.define([
 ], function(JSONModel, Controller, Filter, FilterOperator, Sorter, MessageBox) {
 	"use strict";
 
-	return Controller.extend("zalflexible.controller.Master", {
+	return Controller.extend("zal.zflexibletemplate.controller.Master", {
 		onInit: function() {
-			this.oRouter = this.getOwnerComponent().getRouter();
+			this.oRouter = this.getRouter();
 			this._bDescendingSort = false;
 
 			this.oRouter.getRoute("master").attachPatternMatched(this._onCarrierMatched, this);
@@ -18,7 +18,7 @@ sap.ui.define([
 			// this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onCarrierMatched, this);
 		},
 		onListItemPress: function(oEvent) {
-			var oNextUIState = this.getOwnerComponent().getHelper().getNextUIState(1),
+			var oNextUIState = this.getHelper().getNextUIState(1),
 				carrierPath = oEvent.getSource().getSelectedItem().getBindingContext("carriers").getPath(),
 				carrier = carrierPath.slice(
 					carrierPath.indexOf("'") + 1,
@@ -52,7 +52,7 @@ sap.ui.define([
 			var oView = this.getView(),
 				oTable = oView.byId("carriersTable"),
 				oBinding = oTable.getBinding("items"),
-				oSorter = new Sorter("Carrname	", this._bDescendingSort);
+				oSorter = new Sorter("Carrname", this._bDescendingSort);
 
 			oBinding.sort(oSorter);
 		},
@@ -64,7 +64,7 @@ sap.ui.define([
 		},
 
 		getNumberOfItems: function(sCarrid) {
-			return this.getOwnerComponent().getModel('carriers').getProperty("/CarriersSet('" + sCarrid + "')/FlightSet").length;
+			return this.getModel('carriers').getProperty("/CarriersSet('" + sCarrid + "')/FlightSet").length;
 		}
 	});
 });

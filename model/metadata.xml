@@ -4,7 +4,7 @@
     xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
     <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema
-            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZOD_FLIGHTS_AL_SRV" xml:lang="en" sap:schema-version="1">
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZGW_FLIGHTS_SRV" xml:lang="en" sap:schema-version="1">
             <Annotation
                 xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
                 <EntityType Name="Carriers" sap:content-version="1">
@@ -15,7 +15,7 @@
                     <Property Name="Carrname" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Airline" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                     <Property Name="Currcode" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Airline Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
                     <Property Name="Url" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="URL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                    <NavigationProperty Name="FlightSet" Relationship="ZOD_FLIGHTS_AL_SRV.CarriergetFlight" FromRole="FromRole_CarriergetFlight" ToRole="ToRole_CarriergetFlight"/>
+                    <NavigationProperty Name="FlightSet" Relationship="ZGW_FLIGHTS_SRV.CarriergetFlight" FromRole="FromRole_CarriergetFlight" ToRole="ToRole_CarriergetFlight"/>
                 </EntityType>
                 <EntityType Name="Flight" sap:content-version="1">
                     <Key>
@@ -37,8 +37,8 @@
                     <Property Name="SeatsoccF" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Occupied 1st" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 </EntityType>
                 <Association Name="CarriergetFlight" sap:content-version="1">
-                    <End Type="ZOD_FLIGHTS_AL_SRV.Carriers" Multiplicity="1" Role="FromRole_CarriergetFlight"/>
-                    <End Type="ZOD_FLIGHTS_AL_SRV.Flight" Multiplicity="*" Role="ToRole_CarriergetFlight"/>
+                    <End Type="ZGW_FLIGHTS_SRV.Carriers" Multiplicity="1" Role="FromRole_CarriergetFlight"/>
+                    <End Type="ZGW_FLIGHTS_SRV.Flight" Multiplicity="*" Role="ToRole_CarriergetFlight"/>
                     <ReferentialConstraint>
                         <Principal Role="FromRole_CarriergetFlight">
                             <PropertyRef Name="Carrid"/>
@@ -48,18 +48,18 @@
                         </Dependent>
                     </ReferentialConstraint>
                 </Association>
-                <EntityContainer Name="ZOD_FLIGHTS_AL_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-                    <EntitySet Name="CarriersSet" EntityType="ZOD_FLIGHTS_AL_SRV.Carriers" sap:searchable="true" sap:content-version="1"/>
-                    <EntitySet Name="FlightSet" EntityType="ZOD_FLIGHTS_AL_SRV.Flight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                    <AssociationSet Name="CarriergetFlightSet" Association="ZOD_FLIGHTS_AL_SRV.CarriergetFlight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <EntityContainer Name="ZGW_FLIGHTS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                    <EntitySet Name="CarriersSet" EntityType="ZGW_FLIGHTS_SRV.Carriers" sap:searchable="true" sap:content-version="1"/>
+                    <EntitySet Name="FlightSet" EntityType="ZGW_FLIGHTS_SRV.Flight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                    <AssociationSet Name="CarriergetFlightSet" Association="ZGW_FLIGHTS_SRV.CarriergetFlight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                         <End EntitySet="CarriersSet" Role="FromRole_CarriergetFlight"/>
                         <End EntitySet="FlightSet" Role="ToRole_CarriergetFlight"/>
                     </AssociationSet>
                 </EntityContainer>
                 <atom:link
-                    xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZOD_FLIGHTS_AL_SRV/$metadata"/>
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZGW_FLIGHTS_SRV/$metadata"/>
                     <atom:link
-                        xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZOD_FLIGHTS_AL_SRV/$metadata"/>
+                        xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZGW_FLIGHTS_SRV/$metadata"/>
                     </Schema>
                 </edmx:DataServices>
             </edmx:Edmx>

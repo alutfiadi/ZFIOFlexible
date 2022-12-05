@@ -7,7 +7,7 @@
     }
   ],
   "mockpreview": {
-    "mockUri": "/sap/opu/odata/sap/ZOD_FLIGHTS_AL_SRV",
+    "mockUri": "/sap/opu/odata/sap/ZGW_FLIGHTS_SRV",
     "metadataFilePath": "",
     "loadJSONFiles": false,
     "loadCustomRequests": false,

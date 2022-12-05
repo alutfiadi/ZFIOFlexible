@@ -5,10 +5,10 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "S21",
+        "name": "DWP",
         "entryPath": "/sap/opu/odata"
       },
-      "description": "s21 NDBS"
+      "description": "DSN Dev"
     },
     {
       "path": "/resources",

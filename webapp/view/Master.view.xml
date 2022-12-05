@@ -1,34 +1,19 @@
-<mvc:View displayBlock="true" controllerName="zalflexible.controller.Master" height="100%"
-	  xmlns="sap.m"
-	  xmlns:f="sap.f"
-	  xmlns:mvc="sap.ui.core.mvc">
-	<f:DynamicPage id="dynamicPageId"
-				   toggleHeaderOnTitleClick="false">
+<mvc:View displayBlock="true" controllerName="zal.zflexibletemplate.controller.Master" height="100%" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+	<f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false">
 		<!-- DynamicPage Title -->
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="Carriers List"/>
+					<Title text="{i18n>masterTitle}"/>
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>
-
 		<!-- DynamicPage Content -->
 		<f:content>
-			<Table
-				id="carriersTable"
-				mode="SingleSelectMaster"
-				itemPress="onListItemPress"
-				inset="false"
-				items="{
-					path: 'carriers>/CarriersSet',
-					sorter: {
-						path: 'Carrname'
-					},
-					parameters: {expand:'FlightSet'}
-				}"
-				class="sapFDynamicPageAlignContent"
-				width="auto">
+			<Table id="carriersTable" mode="SingleSelectMaster" itemPress="onListItemPress" inset="false"
+				items="{ path: 'carriers>/CarriersSet', sorter: { path: 'Carrname' }, parameters: {expand:'FlightSet'} }"
+				class="sapFDynamicPageAlignContent" width="auto">
 				<headerToolbar>
 					<OverflowToolbar>
 						<ToolbarSpacer/>
@@ -39,23 +24,22 @@
 				</headerToolbar>
 				<columns>
 					<Column width="12em">
-						<Text text="Carriers" />
+						<Text text="{i18n>Carriers}"/>
 					</Column>
-					<Column	hAlign="End">
-						<Text text="Total Flight" />
+					<Column hAlign="End">
+						<Text text="{i18n>TotalFlight}"/>
 					</Column>
 				</columns>
 				<items>
 					<ColumnListItem type="Navigation">
 						<cells>
-							<ObjectIdentifier title="{carriers>Carrname}" text="{carriers>Carrid}" />
+							<ObjectIdentifier title="{carriers>Carrname}" text="{carriers>Carrid}"/>
 							<Text text="{path: 'carriers>Carrid', formatter: '.getNumberOfItems'}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
 			</Table>
 		</f:content>
-
 		<!-- DynamicPage Footer -->
 		<f:footer>
 			<OverflowToolbar>

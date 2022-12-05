@@ -1,20 +1,70 @@
 {
+	"_version": "1.4.0",
+	"sap.app": {
+		"id": "zal.zflexibletemplate",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.1.26"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZGW_FLIGHTS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+		"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://detail-view",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_fiori_3",
+			"sap_bluecrystal"
+		]
+	},
 	"sap.ui5": {
-        "rootView": {
-			"viewName": "zalflexible.view.FlexibleColumnLayout",
+		"rootView": {
+			"viewName": "zal.zflexibletemplate.view.FlexibleColumnLayout",
 			"type": "XML",
 			"async": true,
 			"id": "fcl"
 		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "zal.zflexibletemplate.i18n.i18n"
+				}
+			}
+		},
 		"dependencies": {
 			"minUI5Version": "1.98.0",
 			"libs": {
-				"sap.ui.core": {
-				},
-				"sap.m": {
-				},
-				"sap.f": {
-				}
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {}
 			}
 		},
 		"config": {
@@ -25,46 +75,40 @@
 				"routerClass": "sap.f.routing.Router",
 				"type": "View",
 				"viewType": "XML",
-				"path": "zalflexible.view",
+				"path": "zal.zflexibletemplate.view",
 				"controlId": "fcl",
 				"transition": "slide",
-				"bypassed": {
-				},
+				"bypassed": {},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "page2",
-					"name": "page2",
-					"target": "page2",
-					"layout": "EndColumnFullScreen"
-				},
-				{
-					"pattern": ":layout:",
-					"name": "master",
-					"target": [
-						"master",
-						"detail"
-					]
-				},
-				{
-					"pattern": "detail/{carrier}/{layout}",
-					"name": "detail",
-					"target": [
-						"master",
-						"detail"
-					]
-				},
-				{
-					"pattern": "detailDetail/{carrier}/{flight}/{layout}",
-					"name": "detailDetail",
-					"target": [
-						"master",
-						"detail",
-						"detailDetail"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "page2",
+				"name": "page2",
+				"target": "page2",
+				"layout": "EndColumnFullScreen"
+			}, {
+				"pattern": ":layout:",
+				"name": "master",
+				"target": [
+					"master",
+					"detail"
+				]
+			}, {
+				"pattern": "detail/{carrier}/{layout}",
+				"name": "detail",
+				"target": [
+					"master",
+					"detail"
+				]
+			}, {
+				"pattern": "detailDetail/{carrier}/{flight}/{layout}",
+				"name": "detailDetail",
+				"target": [
+					"master",
+					"detail",
+					"detailDetail"
+				]
+			}],
 			"targets": {
 				"master": {
 					"name": "Master",

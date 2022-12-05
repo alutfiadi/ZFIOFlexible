@@ -1,6 +1,6 @@
 specVersion: '2.3'
 metadata:
-  name: "zalflexible"
+  name: "zal.zflexibletemplate"
 type: application
 resources:
   configuration:
